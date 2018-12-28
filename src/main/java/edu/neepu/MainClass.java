@@ -27,7 +27,7 @@ public class MainClass {
         FileOutputStream stream = null;//new文件流
 
 
-        for (int i = 1; i <= 120; i++) {
+        for (int i = 1; i <= 2; i++) {
             Document document = Jsoup.connect("http://www.shicimingju.com/book/sanguoyanyi/" + i + ".html").header("Accept-language", "zh-cn").get();
             Elements elements = document.select(".layui-col-md8");
             for (Element element : elements) {
@@ -37,13 +37,18 @@ public class MainClass {
                 try {
 
 
-                    file = new File("C:/Users/Administrator/Desktop/Aa.txt");
-                    stream = new FileOutputStream(file);//将文件夹放在文件流中
-                    if (!file.exists()) {
-                        file.mkdir();
 
+
+                    file = new File("C:/Users/Administrator/Desktop/个人空间/workspace/小说/aa.txt");
+
+                    if (!file.getParentFile().exists()&&!file.isDirectory()){
+                        file.getParentFile().mkdirs();
+                        file.createNewFile();
+                    } else {
+                        file.createNewFile();
                     }
                     byte[] contentInBytes = a.text().getBytes();//转化成字节形
+                    stream = new FileOutputStream(file);//将文件夹放在文件流中
                     stream.write(contentInBytes);//写入
                     stream.flush(); //写完之后刷新
                     stream.close();//关闭流
@@ -68,7 +73,7 @@ public class MainClass {
 
         }
         @Test
-    public void test3 () throws IOException {//此方法用来获取书籍目录
+    public void test3 () throws IOException {//此方法用来获取书籍名中文列表（用来创建书名）
         Document document = Jsoup.connect("http://www.shicimingju.com/book/index.html").header("Accept-language", "zh-cn").get();
         Elements elements = document.select(".layui-col-md8");
         for (Element element : elements) {
