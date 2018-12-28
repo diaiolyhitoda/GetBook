@@ -35,9 +35,6 @@ public class MainClass {
 
                 try {
 
-
-
-
                     file = new File("C:/Users/Administrator/Desktop/个人空间/workspace/小说/aa.txt");
 
                     if (!file.getParentFile().exists()&&!file.isDirectory()){
