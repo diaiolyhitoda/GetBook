@@ -26,7 +26,6 @@ public class MainClass {
 
         FileOutputStream stream = null;//new文件流
 
-
         for (int i = 1; i <= 2; i++) {
             Document document = Jsoup.connect("http://www.shicimingju.com/book/sanguoyanyi/" + i + ".html").header("Accept-language", "zh-cn").get();
             Elements elements = document.select(".layui-col-md8");
